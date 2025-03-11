@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spot the cyber trap</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>⚠️ Spot the cyber trap ⚠️</h1>
+
+    <div class="container">
+        <div class="box">
+            <h2>🔥 ข้อ 1</h2>
+            <div class="link-container">
+                <a href="#" onclick="speakText('เว็ปไซต์นี้ปลอดภัย')">www.google.com</a>
+                <a href="#" onclick="speakText('คุณโดนไวรัส ฮ่าฮ่าฮ่า')">www.g00gle.com</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>🔥 ข้อ 2</h2>
+            <div class="link-container">
+                <a href="#" onclick="speakText('คุณโดนไวรัส ฮ่าฮ่าฮ่า')">www.deplus.xyz</a>
+                <a href="#" onclick="speakText('เว็ปไซต์นี้ปลอดภัย')">www.deplus.com</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>🔥 ข้อ 3</h2>
+            <div class="link-container">
+                <a href="#" onclick="speakText('คุณโดนไวรัส ฮ่าฮ่าฮ่า')">http://www.instagram.com</a>
+                <a href="#" onclick="speakText('เว็ปไซต์นี้ปลอดภัย')">https://www.instagram.com</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>🔥 ข้อ 4</h2>
+            <div class="link-container">
+                <a href="#" onclick="speakText('เว็ปไซต์นี้ปลอดภัย')">https://facebook-login-security.com</a>
+                <a href="#" onclick="speakText('คุณโดนไวรัส ฮ่าฮ่าฮ่า')">http://facebook-login-security.xyz</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>🔥 ข้อ 5</h2>
+            <div class="link-container">
+                <a href="#" onclick="speakText('คุณโดนไวรัส ฮ่าฮ่าฮ่า')">http://example.com/login</a>
+                <a href="#" onclick="speakText('เว็ปไซต์นี้ปลอดภัย')">https://example.com/fake-login</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function speakText(text) {
+            let speech = new SpeechSynthesisUtterance();
+            speech.text = text;
+            speech.lang = "th-TH"; // ตั้งค่าภาษาไทย
+            speech.volume = 1; // ความดัง (0.1 - 1)
+            speech.rate = 1; // ความเร็ว (0.1 - 10)
+            speech.pitch = 1; // เสียงสูงต่ำ (0 - 2)
+            window.speechSynthesis.speak(speech);
+        }
+    </script>
+
+</body>
+</html>
