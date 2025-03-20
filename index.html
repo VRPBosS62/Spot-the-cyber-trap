@@ -9,57 +9,98 @@
 <body>
 
     <h1>⚠️ Spot the cyber trap ⚠️</h1>
+    <h2>คะแนน: <span id="score">0</span></h2>
 
     <div class="container">
         <div class="box">
             <h2>🔥 ข้อ 1</h2>
             <div class="link-container">
-                <a href="#" onclick="speakText('เว็ปไซต์นี้ปลอดภัย')">www.google.com</a>
-                <a href="#" onclick="speakText('คุณโดนไวรัส ฮ่าฮ่าฮ่า')">www.g00gle.com</a>
+                <a href="#" onclick="checkAnswer(this, true, 1)">www.google.com</a>
+                <a href="#" onclick="checkAnswer(this, false, 1)">www.g00gle.com</a>
             </div>
         </div>
 
         <div class="box">
             <h2>🔥 ข้อ 2</h2>
             <div class="link-container">
-                <a href="#" onclick="speakText('คุณโดนไวรัส ฮ่าฮ่าฮ่า')">www.deplus.xyz</a>
-                <a href="#" onclick="speakText('เว็ปไซต์นี้ปลอดภัย')">www.deplus.com</a>
+                <a href="#" onclick="checkAnswer(this, false, 2)">www.deplus.xyz</a>
+                <a href="#" onclick="checkAnswer(this, true, 2)">www.deplus.com</a>
             </div>
         </div>
 
         <div class="box">
             <h2>🔥 ข้อ 3</h2>
             <div class="link-container">
-                <a href="#" onclick="speakText('คุณโดนไวรัส ฮ่าฮ่าฮ่า')">http://www.instagram.com</a>
-                <a href="#" onclick="speakText('เว็ปไซต์นี้ปลอดภัย')">https://www.instagram.com</a>
+                <a href="#" onclick="checkAnswer(this, false, 3)">http://www.instagram.com</a>
+                <a href="#" onclick="checkAnswer(this, true, 3)">https://www.instagram.com</a>
             </div>
         </div>
 
         <div class="box">
             <h2>🔥 ข้อ 4</h2>
             <div class="link-container">
-                <a href="#" onclick="speakText('เว็ปไซต์นี้ปลอดภัย')">https://facebook-login-security.com</a>
-                <a href="#" onclick="speakText('คุณโดนไวรัส ฮ่าฮ่าฮ่า')">http://facebook-login-security.xyz</a>
+                <a href="#" onclick="checkAnswer(this, false, 4)">http://facebook-login-security.xyz</a>
+                <a href="#" onclick="checkAnswer(this, true, 4)">https://facebook-login-security.com</a>
             </div>
         </div>
 
         <div class="box">
             <h2>🔥 ข้อ 5</h2>
             <div class="link-container">
-                <a href="#" onclick="speakText('คุณโดนไวรัส ฮ่าฮ่าฮ่า')">http://example.com/login</a>
-                <a href="#" onclick="speakText('เว็ปไซต์นี้ปลอดภัย')">https://example.com/fake-login</a>
+                <a href="#" onclick="checkAnswer(this, false, 5)">http://example.com/login</a>
+                <a href="#" onclick="checkAnswer(this, true, 5)">https://example.com/fake-login</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>🔥 ข้อ 6</h2>
+            <div class="link-container">
+                <a href="#" onclick="checkAnswer(this, false, 6)">http://bank-securelogin.com</a>
+                <a href="#" onclick="checkAnswer(this, true, 6)">https://bank-secure.com</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>🔥 ข้อ 7</h2>
+            <div class="link-container">
+                <a href="#" onclick="checkAnswer(this, false, 7)">http://amazon-giftcard.xyz</a>
+                <a href="#" onclick="checkAnswer(this, true, 7)">https://amazon.com/giftcard</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>🔥 ข้อ 8</h2>
+            <div class="link-container">
+                <a href="#" onclick="checkAnswer(this, false, 8)">http://paypal-verification.net</a>
+                <a href="#" onclick="checkAnswer(this, true, 8)">https://paypal.com/security</a>
             </div>
         </div>
     </div>
 
     <script>
+        let score = 0;
+        let answered = {};
+
+        function checkAnswer(element, isCorrect, questionNumber) {
+            if (answered[questionNumber]) return;
+            answered[questionNumber] = true;
+
+            if (isCorrect) {
+                score++;
+                speakText('ถูกต้อง! คุณได้รับหนึ่งคะแนน');
+                document.getElementById("score").textContent = score;
+            } else {
+                speakText('ผิด! คุณโดนไวรัสแล้วฮ๋าฮ่าฮ่า');
+            }
+        }
+
         function speakText(text) {
             let speech = new SpeechSynthesisUtterance();
             speech.text = text;
-            speech.lang = "th-TH"; // ตั้งค่าภาษาไทย
-            speech.volume = 1; // ความดัง (0.1 - 1)
-            speech.rate = 1; // ความเร็ว (0.1 - 10)
-            speech.pitch = 1; // เสียงสูงต่ำ (0 - 2)
+            speech.lang = "th-TH";
+            speech.volume = 1;
+            speech.rate = 1;
+            speech.pitch = 1;
             window.speechSynthesis.speak(speech);
         }
     </script>
